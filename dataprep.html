@@ -9,32 +9,153 @@
 <h1>Data Preparation & Exploratory Data Analysis</h1>
 
 <p>
-This section describes the datasets used in this project, how they were collected, and the steps used to clean and prepare the data for analysis.
+This section describes the datasets used in this project, how they were collected, and the steps used to clean and prepare the data for analysis. The goal of this stage is to build a structured biomedical research dataset that can be used to analyze publication trends, collaboration patterns, and scientific impact over time.
 </p>
-    
+
+<hr>
+
 <h2>1. Data Sources</h2>
-<p>Describe each dataset + link to raw files.</p>
+
+<p>
+The primary dataset used in this project was collected from the <b>Europe PMC API</b>, a large-scale biomedical literature database that aggregates research articles from PubMed and other life science repositories.
+</p>
+
+<ul>
+    <li><b>Source:</b> Europe PMC (European Bioinformatics Institute)</li>
+    <li><b>Access Method:</b> REST API</li>
+    <li><b>Query Used:</b> "biomedical"</li>
+    <li><b>Link:</b> https://www.ebi.ac.uk/europepmc/</li>
+    <li><b>Format:</b> JSON (converted to tabular format in R)</li>
+</ul>
+
+<p>
+In addition to the API data, future versions of this project may incorporate external datasets (such as Kaggle biomedical datasets or NIH datasets) to expand coverage and enable cross-dataset comparisons.
+</p>
+
+<hr>
 
 <h2>2. API Data Collection</h2>
-<p>API description, endpoint, code link, raw JSON screenshot.</p>
 
-<h2>3. Raw Data Samples</h2>
-<img src="images/raw_data_sample1.png">
-<img src="images/raw_data_sample2.png">
+<p>
+Data was collected using the Europe PMC REST API. The API allows direct programmatic access to biomedical publication metadata, including titles, authors, journals, publication years, citation counts, and open access status.
+</p>
+
+<p>
+The following endpoint was used:
+</p>
+
+<pre>
+https://www.ebi.ac.uk/europepmc/webservices/rest/search?query=biomedical&format=json&pageSize=1000
+</pre>
+
+<p>
+The data was retrieved in JSON format and processed in R using the <code>httr</code> and <code>jsonlite</code> packages. The nested JSON structure was flattened into a structured data frame for analysis.
+</p>
+
+<hr>
+
+<h2>3. Raw Data Structure</h2>
+
+<p>
+The raw dataset contained approximately <b>1000 biomedical research papers</b> with <b>33 variables per paper</b>. Each row represents a single publication, and each column represents metadata associated with that publication.
+</p>
+
+<p>Key variables include:</p>
+
+<ul>
+    <li>Title</li>
+    <li>Authors</li>
+    <li>DOI</li>
+    <li>Journal Name</li>
+    <li>Publication Year</li>
+    <li>Citation Count</li>
+    <li>Open Access Status</li>
+    <li>Publication Type</li>
+</ul>
+
+<div>
+    <img src="images/raw_data_sample1.png" width="600">
+    <p><i>Figure 1: Example of raw API-derived dataset structure.</i></p>
+</div>
+
+<hr>
 
 <h2>4. Data Cleaning Steps</h2>
-<p>Missing values, normalization, parsing authors, etc.</p>
-<img src="images/cleaned_data_sample1.png">
 
-<h2>5. Exploratory Visualizations</h2>
-<img src="images/vis1.png">
-<img src="images/vis2.png">
-...
-<img src="images/vis10.png">
+<p>
+The raw JSON data required several preprocessing steps before it could be used for analysis. Biomedical metadata is often incomplete or inconsistently structured across journals, so cleaning was necessary to ensure data quality.
+</p>
 
-<h2>6. Summary of Insights</h2>
-<p>What you learned from the EDA.</p>
- 
+<p><b>Cleaning steps performed:</b></p>
+
+<ul>
+    <li>Flattened nested JSON structures into a tabular data frame</li>
+    <li>Converted list-based fields into character strings</li>
+    <li>Removed records with missing titles, DOIs, or publication years</li>
+    <li>Filtered dataset to include only journal articles</li>
+    <li>Standardized publication year format for analysis</li>
+</ul>
+
+<p>
+After cleaning, the dataset was reduced from <b>1000 raw records to 623 clean records</b>, ensuring higher reliability for statistical analysis and visualization.
+</p>
+
+<div>
+    <img src="images/cleaned_data_sample1.png" width="600">
+    <p><i>Figure 2: Example of cleaned and structured dataset.</i></p>
+</div>
+
+<hr>
+
+<h2>5. Exploratory Data Analysis (EDA)</h2>
+
+<p>
+Initial exploratory analysis was conducted to understand the structure and distribution of biomedical research publications in the dataset. This includes examining publication trends, journal frequency, and citation distributions.
+</p>
+
+<p><b>Planned visualizations include:</b></p>
+
+<ul>
+    <li>Number of publications per year</li>
+    <li>Top 10 journals by publication count</li>
+    <li>Citation count distribution</li>
+    <li>Open access vs non-open access publications</li>
+    <li>Trend of publications over time</li>
+    <li>Author frequency analysis</li>
+    <li>Publication type distribution</li>
+    <li>Keyword or title frequency analysis</li>
+    <li>Collaboration size distribution</li>
+    <li>Correlation between citations and publication year</li>
+</ul>
+
+<div>
+    <img src="images/vis1.png" width="600">
+    <img src="images/vis2.png" width="600">
+    <p><i>Figures 3–4: Example exploratory visualizations of biomedical publication trends.</i></p>
+</div>
+
+<hr>
+
+<h2>6. Key Observations (Preliminary)</h2>
+
+<p>
+Early analysis suggests that biomedical research output is highly concentrated in recent years, reflecting rapid growth in scientific publishing. Journals vary significantly in publication volume, and citation counts show strong skewness, with a small number of papers receiving the majority of citations.
+</p>
+
+<p>
+These patterns indicate that biomedical research behaves as a complex system, where certain topics, journals, and collaborations disproportionately influence scientific impact.
+</p>
+
+<hr>
+
+<h2>7. Summary</h2>
+
+<p>
+This dataset provides a structured foundation for analyzing biomedical research trends using data science techniques. The combination of API-based data collection and systematic cleaning ensures that the dataset is suitable for deeper analysis, including clustering, prediction, and network analysis in later stages of the project.
+</p>
+
+<hr>
+
 <nav>
     <a href="index.html">Home</a> |
     <a href="introduction.html">Introduction</a> |
@@ -48,16 +169,6 @@ This section describes the datasets used in this project, how they were collecte
     <a href="neuralnetworks.html">Neural Networks</a> |
     <a href="conclusions.html">Conclusions</a>
 </nav>
-
-<hr>
-
-<h1>Data Preparation & Exploratory Data Analysis</h1>
-
-<p>
-This section will contain data sources, APIs,
-data cleaning procedures, exploratory analysis,
-and visualizations.
-</p>
 
 </body>
 </html>

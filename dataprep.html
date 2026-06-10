@@ -37,10 +37,10 @@ The primary objective of this stage is to construct a robust, high-quality, and 
 <h2>1. Data Sources</h2>
 
 <p>
-This project uses <b>two complementary biomedical literature datasets</b>. All raw data sources and links are provided in Section 6 at the bottom of this page.
+This project uses <b>three complementary biomedical literature datasets</b>. All raw data sources and links are provided in Section 6 at the bottom of this page.
 </p>
 
-<h3>1.1 Europe PMC API Dataset (Primary Source)</h3>
+<h3>1.1 Europe PMC API Dataset</h3>
 
 <ul>
     <li><b>Source:</b> Europe PMC (European Bioinformatics Institute)</li>
@@ -74,6 +74,21 @@ This query retrieves all biomedical publications indexed in 2026. The JSON respo
 
 <p>
 The Kaggle dataset complements the API dataset by providing thematic and semantic variables not available in Europe PMC.
+</p>
+
+<h3>1.3 Semantic Scholar Papers Dataset (Third Source)</h3>
+
+<ul>
+    <li><b>Source:</b> Semantic Scholar Open Research Corpus (S2ORC)</li>
+    <li><b>Access Method:</b> Bulk dataset download (JSONL shard)</li>
+    <li><b>Purpose:</b> Provides large-scale metadata including titles, abstracts, authors, venues, fields of study, and open access status</li>
+    <li><b>Format:</b> JSONL → converted to CSV</li>
+</ul>
+
+<p>
+A single shard (~1.5 GB compressed) of the Semantic Scholar <code>papers</code> dataset was downloaded and converted from JSONL to CSV. 
+This dataset complements the Europe PMC and Kaggle datasets by providing a broader and more diverse sample of scientific literature, 
+including fields outside biomedicine. Only metadata fields relevant to this project were retained.
 </p>
 
 <hr>

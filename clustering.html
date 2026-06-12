@@ -46,7 +46,7 @@ the analyst to “cut” the dendrogram at different heights to obtain different
 <p>
 In this project, clustering is used to uncover patterns in biomedical research article metadata. 
 K-means uses Euclidean distance on standardized numeric features (Fig. 2), while hierarchical clustering 
-uses <strong>cosine distance</strong> with average linkage, which is well-suited for high-dimensional 
+uses cosine distance with average linkage, which is well-suited for high-dimensional 
 text-derived features.
 </p>
 
@@ -63,8 +63,8 @@ text-derived features.
 
 <h2>Data Preparation</h2>
 <p>
-Clustering requires <strong>numeric, unlabeled</strong> data. All non-numeric variables (titles, authors, journal names) 
-were removed, and the remaining numeric features were standardized. This ensures that no single variable 
+Clustering requires <strong>numeric, unlabeled</strong> data. All non-numeric variables (e.g., titles, authors) 
+were quantified and standardized. This ensures that no single variable 
 dominates the distance calculations.
 </p>
 
@@ -131,12 +131,7 @@ This aligns with the silhouette analysis and the k-means results.
 
 <figure>
     <img src="images/kmeans4.png" width="420">
-    <figcaption><em>Figure 6: K-means clustering with k = 4. Clearer, more compact clusters that align with hierarchical clustering.</em></figcaption>
-</figure>
-
-<figure>
-    <img src="images/kmeans_final_final.png" width="650">
-    <figcaption><em>Fingure 7: Final k-means clustering with k = 6. Clusters become smaller and less stable, suggesting over-partitioning.</em></figcaption>
+    <figcaption><em>Figure 7: K-means clustering with k = 4. Clearer, more compact clusters that align with hierarchical clustering.</em></figcaption>
 </figure>
 
 <h3>Silhouette Analysis</h3>
